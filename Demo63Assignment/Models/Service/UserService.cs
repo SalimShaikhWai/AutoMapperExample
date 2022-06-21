@@ -10,7 +10,7 @@ namespace Demo63Assignment.Models.Service
 
     public interface IUserService
     {
-        public Task<PaginatedList<User>> PagingGetAllAsync(int pageNumber);
+        public Task<PaginatedList<User, UserViewModel>> PagingGetAllAsync(int pageNumber);
     }
 
     public class UserService : ICrudService<UserViewModel>, IUserService
@@ -38,11 +38,13 @@ namespace Demo63Assignment.Models.Service
             _userMgtContext.Remove(user);
             await _userMgtContext.SaveChangesAsync();
         }
-        public async Task<PaginatedList<User>> PagingGetAllAsync(int pageNumber)
+        public async Task<PaginatedList<User,UserViewModel>> PagingGetAllAsync(int pageNumber)
         {
             //var users=await  _userMgtContext.Users.Include(nameof(User.DepartmentRef)).ToListAsync();
             //var userViewModels = users.Select(u => _autoMapperProfile.Map<UserViewModel>(u));
-            var pageData = await PaginatedList<User>.CreateAsync(_userMgtContext.Users, pageNumber, 2);
+            var pageData = await PaginatedList<User, UserViewModel>.CreateAsync(_userMgtContext.Users, pageNumber, 2,_autoMapperProfile);
+          //  var userviewModels = _autoMapperProfile.ProjectTo<UserViewModel>(pageData);
+            
             // var userViewModels = await _autoMapperProfile.ProjectTo<UserViewModel>(_userMgtContext.Users).ToListAsync();
             return pageData;
         }

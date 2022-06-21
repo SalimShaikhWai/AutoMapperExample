@@ -1,7 +1,7 @@
 ﻿@using Demo63Assignment.Models.DataModel
 @using Demo63Assignment.Models.UtilityClass
 
-@model PaginatedList<User>
+@model PaginatedList<User,UserViewModel>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -35,6 +35,7 @@
                         <td>@user.LastName</td>
                         <td>@user.Address</td>
                         <td>@user.Email</td>
+                        <td>@user.DepartmentName</td>
                         @*<td>@user.DepartmentName</td>*@
                         <td class="text-center"><a class="btn btn-primary" asp-action="Update" asp-route-id="@user.Id" />Edit</td>
                         <td class="text-center"><a class="btn btn-danger" asp-action="Delete" asp-route-id="@user.Id" />Delete</td>
