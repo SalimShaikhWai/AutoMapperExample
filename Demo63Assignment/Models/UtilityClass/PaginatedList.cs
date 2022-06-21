@@ -5,17 +5,15 @@ namespace Demo63Assignment.Models.UtilityClass
 {
     public class PaginatedList<T,K> : List<K>
     {
-
-
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
 
-        public List<K> Data { get; set; }   
+         
         public PaginatedList(List<K> items, int count, int pageIndex, int pageSize)
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            Data = items;
+           
             this.AddRange(items);
 
         }

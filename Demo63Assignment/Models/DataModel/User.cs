@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Demo63Assignment.CustomValidation;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,7 @@ namespace Demo63Assignment.Models.DataModel
         public string LastName { get; set; }
 
         [Column("DateOfBirth")]
+        [AgeValidation(ErrorMessage ="Age Should be More Than 18")]
         public DateTime DateOfBirth { get; set; }
 
 

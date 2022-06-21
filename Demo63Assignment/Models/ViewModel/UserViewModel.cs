@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Demo63Assignment.CustomValidation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Demo63Assignment.Models.ViewModel
 {
@@ -14,6 +15,7 @@ namespace Demo63Assignment.Models.ViewModel
         [Required]
         public string LastName { get; set; }
         [Display(Name = "Date Of Birth")]
+        [AgeValidation(ErrorMessage = "Age Should be More Than 18")]
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Pan { get; set; }

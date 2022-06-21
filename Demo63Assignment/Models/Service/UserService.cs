@@ -8,11 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Demo63Assignment.Models.Service
 {
 
-    public interface IUserService
-    {
-        public Task<PaginatedList<User, UserViewModel>> PagingGetAllAsync(int pageNumber);
-    }
-
+   
     public class UserService : ICrudService<UserViewModel>, IUserService
     {
         private readonly UserMgtContext _userMgtContext;
@@ -59,9 +55,9 @@ namespace Demo63Assignment.Models.Service
 
         public async Task<UserViewModel> GetByIdAsync(int id)
         {
-            var user = await _userMgtContext.Users.SingleAsync(u => u.Id == id);
-
-            var userVieModel = _autoMapperProfile.Map<UserViewModel>(user);
+            // var user = await _userMgtContext.Users.SingleAsync(u => u.Id == id);
+            //var userVieModel = _autoMapperProfile.Map<UserViewModel>(user);
+            var userVieModel =await  _autoMapperProfile.ProjectTo<UserViewModel>(_userMgtContext.Users).SingleAsync(u=>u.Id==id); 
             return userVieModel;
         }
 
